@@ -12,6 +12,7 @@ if (settings == false) {
   settings = readSettings();
 }
 if (settings != false) {
+  document.getElementById('actions_remove').classList.remove('visually-hidden')
   parse_composer_json();
   bind_events();
 }
@@ -43,6 +44,7 @@ function bind_events() {
   document.getElementById('action__install').addEventListener('click', run_composer_install);
   document.getElementById('action__update').addEventListener('click', run_composer_update);
   document.getElementById('action__update_drupal').addEventListener('click', run_drupal_update);
+  document.getElementById('action__remove_settings').addEventListener('click', remove_settings);
 }
 
 function run_drupal_update() {
@@ -82,6 +84,11 @@ function run_composer_update() {
     logMessage(`stdout: ${stdout}`);
     logMessage(`stderr: ${stderr}`);
   });
+}
+
+function remove_settings() {
+  fs.unlink(__dirname + '/settings.json');
+  logMessage('Settings file removed, starting over will allow you to select a new directory.');
 }
 
 /**
