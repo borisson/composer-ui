@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <style>
+    body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}
+    h1,h2,h3{line-height:1.2}
+    .visually-hidden { display: none; }
+    #log { font-family: monospace; font-size: 12px; border: 1px solid #aaa; padding: 10px; margin: 10px 0; max-height: 300px; overflow-y: scroll;}
+    .action {
+      border-radius: 4px;
+      font-family: Arial;
+      color: #ffffff;
+      background: #3498db;
+      padding: 10px 20px;
+      border: solid #3498db 2px;
+      cursor: pointer;
+    }
+    .btn:hover { background: #3498db; }
+    .actions {
+      margin: 10px 0;
+    }
+    </style>
+  </head>
+  <body>
+    <h1>Run composer commands.</h1>
+
+    <p>Select a composer.json file to start.</p>
+
+    <div id="actions__composer" class="actions actions__composer visually-hidden">
+      <button id="action__install" class="action action--composer action--install">Install all dependencies</button>
+      <button id="action__update" class="action action--composer action--update">Update all dependencies</button>
+    </div>
+    <div id="actions__drupal" class="actions actions__drupal visually-hidden">
+      <button id="action__update_drupal" class="action action--composer action--update">Update drupal</button>
+    </div>
+    <div id="log"></div>
+  </body>
+
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script>
+</html>
