@@ -1,27 +1,21 @@
 {
-  "name": "electron-quick-start",
+  "name": "composer-ui",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "A minimal Electron to run composer commands.",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/electron/electron-quick-start.git"
+    "url": "git+https://github.com/borisson/composer-ui.git"
   },
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial"
-  ],
   "author": "GitHub",
   "license": "CC0-1.0",
   "bugs": {
-    "url": "https://github.com/electron/electron-quick-start/issues"
+    "url": "https://github.com/borisson/composer-ui/issues"
   },
-  "homepage": "https://github.com/electron/electron-quick-start#readme",
+  "homepage": "https://github.com/borisson/composer-ui#readme",
   "devDependencies": {
     "electron-prebuilt": "^1.2.0"
   }
