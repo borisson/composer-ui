@@ -1,0 +1,41 @@
+body {
+  margin: 40px auto;
+  max-width: 650px;
+  line-height: 1.6;
+  font-size: 18px;
+  color: #444;
+  padding: 0 10px;
+}
+h1,h2,h3 {
+  line-height:1.2
+}
+
+.visually-hidden {
+  display: none;
+}
+
+.actions {
+  margin: 10px 0;
+}
+.action {
+  border-radius: 4px;
+  font-family: Arial;
+  color: #ffffff;
+  background: #3498db;
+  padding: 10px 20px;
+  border: solid #3498db 2px;
+  cursor: pointer;
+}
+  .action:hover {
+    background: #3498db;
+  }
+
+#log {
+  font-family: monospace;
+  font-size: 12px;
+  border: 1px solid #aaa;
+  padding: 10px;
+  margin: 10px 0;
+  max-height: 300px;
+  overflow-y: scroll;
+}
