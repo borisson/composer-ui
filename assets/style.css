@@ -30,7 +30,7 @@ h1,h2,h3 {
     background: #3498db;
   }
 
-#log {
+.log {
   font-family: monospace;
   font-size: 12px;
   border: 1px solid #aaa;
@@ -38,4 +38,12 @@ h1,h2,h3 {
   margin: 10px 0;
   max-height: 300px;
   overflow-y: scroll;
+  position: relative;
 }
+  .log .throbber {
+    right: 4px;
+    top: 4px;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+  }

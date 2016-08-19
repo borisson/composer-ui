@@ -80,6 +80,7 @@ function bind_events() {
  * Updates the drupal core package.
  */
 function run_drupal_update() {
+  showThrobber();
   var dir = settings.dir;
   logMessage('Updating drupal ' + dir);
   exec('cd ' + dir +'; composer update --with-dependencies drupal/core', (error, stdout, stderr) => {
@@ -90,6 +91,7 @@ function run_drupal_update() {
     logMessage(`stdout: ${stdout}`);
     logMessage(`stderr: ${stderr}`);
     logMessage('Drupal install done.');
+    hideThrobber();
   });
 }
 
@@ -97,6 +99,7 @@ function run_drupal_update() {
  * Installs all composer dependencies.
  */
 function run_composer_install() {
+  showThrobber();
   var dir = settings.dir;
   logMessage('Running composer install in ' + dir);
   exec('cd ' + dir +'; composer install', (error, stdout, stderr) => {
@@ -107,6 +110,7 @@ function run_composer_install() {
     logMessage(`stdout: ${stdout}`);
     logMessage(`stderr: ${stderr}`);
     logMessage('Composer install done.');
+    hideThrobber();
   });
 }
 
@@ -114,6 +118,7 @@ function run_composer_install() {
  * Updates all composer dependencies.
  */
 function run_composer_update() {
+  showThrobber();
   var dir = settings.dir;
   logMessage('Running composer update in ' + dir);
   exec('cd ' + dir +'; composer update --with-dependencies', (error, stdout, stderr) => {
@@ -124,6 +129,7 @@ function run_composer_update() {
     logMessage(`stdout: ${stdout}`);
     logMessage(`stderr: ${stderr}`);
     logMessage('Composer update done.');
+    hideThrobber();
   });
 }
 
@@ -196,4 +202,18 @@ function readSettings() {
 function logMessage(message) {
   var div = document.getElementById('log');
   div.innerHTML = div.innerHTML + `${message} <br />`;
+}
+
+/**
+ * Hides the throbber.
+ */
+function hideThrobber() {
+  document.getElementById('throbber').classList.add('visually-hidden');
+}
+
+/**
+ * Shows the throbber.
+ */
+function showThrobber() {
+  document.getElementById('throbber').classList.remove('visually-hidden');
 }
