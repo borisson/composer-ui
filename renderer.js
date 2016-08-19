@@ -74,7 +74,7 @@ function bind_events() {
 function run_drupal_update() {
   var dir = settings.dir;
   logMessage('Updating drupal ' + dir);
-  exec('cd ' + dir +'; composer update drupal/core', (error, stdout, stderr) => {
+  exec('cd ' + dir +'; composer update --with-dependencies drupal/core', (error, stdout, stderr) => {
     if (error) {
       logMessage(error);
       return;
@@ -106,7 +106,7 @@ function run_composer_install() {
 function run_composer_update() {
   var dir = settings.dir;
   logMessage('Running composer update in ' + dir);
-  exec('cd ' + dir +'; composer update', (error, stdout, stderr) => {
+  exec('cd ' + dir +'; composer update --with-dependencies', (error, stdout, stderr) => {
     if (error) {
       logMessage(error);
       return;
