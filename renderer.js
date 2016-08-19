@@ -10,7 +10,7 @@ var settings = "";
 main();
 
 /**
- * Main method, call out to other functions.
+ * Main method, call out to other functions and starts by reading settings.
  */
 function main() {
   // Try to read settings from the settings.json file if that's found on disk.
