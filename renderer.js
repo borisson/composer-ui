@@ -13,7 +13,6 @@ main();
  * Main method, call out to other functions.
  */
 function main() {
-  console.log('main')
   // Try to read settings from the settings.json file if that's found on disk.
   settings = readSettings();
   // Settings are found, so parse the json file, bind events, and show the
