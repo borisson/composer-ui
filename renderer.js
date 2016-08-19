@@ -89,6 +89,7 @@ function run_drupal_update() {
     }
     logMessage(`stdout: ${stdout}`);
     logMessage(`stderr: ${stderr}`);
+    logMessage('Drupal install done.');
   });
 }
 
@@ -105,6 +106,7 @@ function run_composer_install() {
     }
     logMessage(`stdout: ${stdout}`);
     logMessage(`stderr: ${stderr}`);
+    logMessage('Composer install done.');
   });
 }
 
@@ -121,6 +123,7 @@ function run_composer_update() {
     }
     logMessage(`stdout: ${stdout}`);
     logMessage(`stderr: ${stderr}`);
+    logMessage('Composer update done.');
   });
 }
 
