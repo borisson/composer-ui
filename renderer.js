@@ -120,6 +120,9 @@ function run_composer_update() {
  * Removes the settings.json file.
  */
 function remove_settings() {
+  document.getElementById('actions__composer').classList.add('visually-hidden');
+  document.getElementById('actions__drupal').classList.add('visually-hidden');
+  document.getElementById('actions_remove').classList.add('visually-hidden');
   fs.unlink(__dirname + '/settings.json');
   logMessage('Settings file removed, starting over will allow you to select a new directory.');
 }
