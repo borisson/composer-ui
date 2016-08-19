@@ -7,20 +7,29 @@ const exec = require('child_process').exec;
 // Set up settings variable.
 var settings = "";
 
-// Try to read settings from the settings.json file if that's found on disk.
-settings = readSettings()
+main();
 
-// Wasn't able to read settings, try getting them trough ::openFile.
-if (settings == false) {
-  openFile();
+/**
+ * Main method, call out to other functions.
+ */
+function main() {
+  console.log('main')
+  // Try to read settings from the settings.json file if that's found on disk.
   settings = readSettings();
-}
-// Settings are found, so parse the json file, bind events, and show the
-// "remove" actions box.
-if (settings != false) {
-  document.getElementById('actions_remove').classList.remove('visually-hidden')
-  parse_composer_json();
-  bind_events();
+  // Settings are found, so parse the json file, bind events, and show the
+  // "remove" actions box.
+  if (settings != false) {
+    document.getElementById('actions_remove').classList.remove('visually-hidden')
+    document.getElementById('actions_select').classList.add('visually-hidden')
+    parse_composer_json();
+    bind_events();
+  }
+  if (settings == false) {
+
+  }
+  // Add action to select button.
+  document.getElementById('action__select')
+    .addEventListener('click', openFile);
 }
 
 /**
@@ -123,6 +132,7 @@ function remove_settings() {
   document.getElementById('actions__composer').classList.add('visually-hidden');
   document.getElementById('actions__drupal').classList.add('visually-hidden');
   document.getElementById('actions_remove').classList.add('visually-hidden');
+  document.getElementById('actions_select').classList.remove('visually-hidden');
   fs.unlink(__dirname + '/settings.json');
   logMessage('Settings file removed, starting over will allow you to select a new directory.');
 }
@@ -158,6 +168,7 @@ function openFile() {
  */
 function writeSettings(settings) {
   fs.writeFile(__dirname + '/settings.json', JSON.stringify( settings ), "utf8");
+  setTimeout(function() { main(); }, 100);
 }
 
 /**
