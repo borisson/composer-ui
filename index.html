@@ -3,6 +3,17 @@
   <head>
     <meta charset="UTF-8">
     <title>Composer UI</title>
+    <style>
+    body {
+      margin: 20px auto;
+      max-width: 650px;
+      line-height: 1.6;
+      font-size: 18px;
+      color: #444;
+      padding: 10px;
+      font-family: sans-serif;
+    }
+    </style>
   </head>
   <body>
     <h1>Composer UI.</h1>
@@ -26,7 +37,7 @@
 
     <div id="log" class="log">
       <svg id="throbber" class="throbber visually-hidden" viewBox="0 0 300 300"
-          xmlns="http://www.w3.org/2000/svg" version="1.1">
+          xmlns="http://www.w3.org/2000/svg" version="1.1" width="24" height="24">
         <path d="M 150,0
                  a 150,150 0 0,1 106.066,256.066
                  l -35.355,-35.355
@@ -42,13 +53,13 @@
   </body>
 
   <script type="text/javascript">
-    // You can also require other files to run in this process
-    require('./renderer.js');
-
     // Add main stylesheet.
     var link = document.createElement('link')
     link.setAttribute('rel', 'stylesheet')
     link.setAttribute('href', require('path').join(__dirname, 'assets', 'style.css'))
     document.head.appendChild(link)
+
+    // You can also require other files to run in this process
+    require('./renderer.js');
   </script>
 </html>
