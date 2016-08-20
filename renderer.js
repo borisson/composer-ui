@@ -10,29 +10,31 @@ var settings = "";
 main();
 
 /**
- * Main method, call out to other functions and starts by reading settings.
+ * Adds behavior to all elements.
+ *
+ * Delegates to readSettings to fill in the settings variable if a settings file
+ * exists and tries to bind events and parses the composer file.
  */
 function main() {
+  bind_events();
+
   // Try to read settings from the settings.json file if that's found on disk.
   settings = readSettings();
+
   // Settings are found, so parse the json file, bind events, and show the
   // "remove" actions box.
   if (settings != false) {
     document.getElementById('actions_remove').classList.remove('visually-hidden')
     document.getElementById('actions_select').classList.add('visually-hidden')
     parse_composer_json();
-    bind_events();
   }
-  if (settings == false) {
 
-  }
   // Add action to select button.
-  document.getElementById('action__select')
-    .addEventListener('click', openFile);
+  document.getElementById('action__select').addEventListener('click', openFile);
 }
 
 /**
- * Parse the composer.json file to see if it's valid.
+ * Parses the composer.json file to see if it's valid.
  *
  * Also checks to see if the composer-file has dependencies on drupal or is the
  * drupal core's composer.json.
@@ -63,7 +65,7 @@ function parse_composer_json() {
 }
 
 /**
- * Bind events to buttons.
+ * Binds events to buttons.
  */
 function bind_events() {
   document.getElementById('action__install')
@@ -172,7 +174,7 @@ function openFile() {
 }
 
 /**
- * Write the settings json blob into settings.json.
+ * Writes the settings json blob into settings.json.
  */
 function writeSettings(settings) {
   fs.writeFile(__dirname + '/settings.json', JSON.stringify( settings ), "utf8");
