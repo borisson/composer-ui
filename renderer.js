@@ -84,7 +84,12 @@ function bindEvents() {
 function runDrupalUpdate() {
   showThrobber();
   var dir = settings.dir;
-  var command = 'composer update --with-dependencies drupal/core';
+  if (settings.verbose) {
+    var command = 'composer update --with-dependencies --verbose drupal/core';
+  }
+  else {
+    var command = 'composer update --with-dependencies drupal/core';
+  }
   logMessage('Updating drupal');
   logCommand(command, dir);
   exec('cd ' + dir + '; ' + command, (error, stdout, stderr) => {
@@ -105,7 +110,13 @@ function runDrupalUpdate() {
 function runComposerInstall() {
   showThrobber();
   var dir = settings.dir;
-  var command = 'composer install';
+  if (settings.verbose) {
+    var command = 'composer install --verbose'
+  }
+  else {
+    var command = 'composer install';
+  }
+
   logMessage('Installing dependencies.');
   logCommand(command, dir);
   exec('cd ' + dir + '; ' + command, (error, stdout, stderr) => {
@@ -126,7 +137,12 @@ function runComposerInstall() {
 function runComposerUpdate() {
   showThrobber();
   var dir = settings.dir;
-  var command = 'composer update --with-dependencies';
+  if (settings.verbose) {
+    var command = 'composer update --with-dependencies --verbose';
+  }
+  else {
+    var command = 'composer update --with-dependencies';
+  }
   logMessage('Updating dependencies.');
   logCommand(command, dir);
   exec('cd ' + dir + '; ' + command, (error, stdout, stderr) => {
@@ -172,7 +188,8 @@ function openFile() {
       // the directory.
       settings = {
         dir: fileName.replace(/composer\.json/g, ''),
-        fileName: fileName
+        fileName: fileName,
+        verbose: false
       }
       writeSettings(settings);
     }
