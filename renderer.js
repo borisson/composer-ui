@@ -16,7 +16,7 @@ main();
  * exists and tries to bind events and parses the composer file.
  */
 function main() {
-  bind_events();
+  bindEvents();
 
   // Try to read settings from the settings.json file if that's found on disk.
   settings = readSettings();
@@ -26,7 +26,7 @@ function main() {
   if (settings != false) {
     document.getElementById('actions_remove').classList.remove('visually-hidden')
     document.getElementById('actions_select').classList.add('visually-hidden')
-    parse_composer_json();
+    parseComposerJson();
   }
 
   // Add action to select button.
@@ -39,13 +39,13 @@ function main() {
  * Also checks to see if the composer-file has dependencies on drupal or is the
  * drupal core's composer.json.
  */
-function parse_composer_json() {
+function parseComposerJson() {
   var composerfile = settings.fileName;
   var content = fs.readFileSync(composerfile, "utf8");
   var composer = JSON.parse(content);
   if (composer.name == '') {
     logMessage('No name in comopser.json, exiting.');
-    remove_settings();
+    removeSettings();
     return;
   }
   document.getElementById('actions__composer').classList.remove('visually-hidden')
@@ -67,21 +67,21 @@ function parse_composer_json() {
 /**
  * Binds events to buttons.
  */
-function bind_events() {
+function bindEvents() {
   document.getElementById('action__install')
-    .addEventListener('click', run_composer_install);
+    .addEventListener('click', runComposerInstall);
   document.getElementById('action__update')
-    .addEventListener('click', run_composer_update);
+    .addEventListener('click', runComposerUpdate);
   document.getElementById('action__update_drupal')
-    .addEventListener('click', run_drupal_update);
+    .addEventListener('click', runDrupalUpdate);
   document.getElementById('action__remove_settings')
-    .addEventListener('click', remove_settings);
+    .addEventListener('click', removeSettings);
 }
 
 /**
  * Updates the drupal core package.
  */
-function run_drupal_update() {
+function runDrupalUpdate() {
   showThrobber();
   var dir = settings.dir;
   logMessage('Updating drupal ' + dir);
@@ -100,7 +100,7 @@ function run_drupal_update() {
 /**
  * Installs all composer dependencies.
  */
-function run_composer_install() {
+function runComposerInstall() {
   showThrobber();
   var dir = settings.dir;
   logMessage('Running composer install in ' + dir);
@@ -119,7 +119,7 @@ function run_composer_install() {
 /**
  * Updates all composer dependencies.
  */
-function run_composer_update() {
+function runComposerUpdate() {
   showThrobber();
   var dir = settings.dir;
   logMessage('Running composer update in ' + dir);
@@ -138,7 +138,7 @@ function run_composer_update() {
 /**
  * Removes the settings.json file.
  */
-function remove_settings() {
+function removeSettings() {
   document.getElementById('actions__composer').classList.add('visually-hidden');
   document.getElementById('actions__drupal').classList.add('visually-hidden');
   document.getElementById('actions_remove').classList.add('visually-hidden');
