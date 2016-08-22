@@ -33,10 +33,14 @@ h1,h2,h3 {
   overflow-y: scroll;
   position: relative;
 }
-  .log .throbber {
-    right: 4px;
-    top: 4px;
-    width: 24px;
-    height: 24px;
-    position: absolute;
-  }
+.log .throbber {
+  right: 4px;
+  top: 4px;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+}
+.log-command .command {
+  background: #444;
+  color: #3498db;
+}

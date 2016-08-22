@@ -84,8 +84,10 @@ function bindEvents() {
 function runDrupalUpdate() {
   showThrobber();
   var dir = settings.dir;
-  logMessage('Updating drupal ' + dir);
-  exec('cd ' + dir +'; composer update --with-dependencies drupal/core', (error, stdout, stderr) => {
+  var command = 'composer update --with-dependencies drupal/core';
+  logMessage('Updating drupal');
+  logCommand(command, dir);
+  exec('cd ' + dir + '; ' + command, (error, stdout, stderr) => {
     if (error) {
       logMessage(error);
       return;
@@ -103,8 +105,10 @@ function runDrupalUpdate() {
 function runComposerInstall() {
   showThrobber();
   var dir = settings.dir;
-  logMessage('Running composer install in ' + dir);
-  exec('cd ' + dir +'; composer install', (error, stdout, stderr) => {
+  var command = 'composer install';
+  logMessage('Installing dependencies.');
+  logCommand(command, dir);
+  exec('cd ' + dir + '; ' + command, (error, stdout, stderr) => {
     if (error) {
       logMessage(error);
       return;
@@ -122,8 +126,10 @@ function runComposerInstall() {
 function runComposerUpdate() {
   showThrobber();
   var dir = settings.dir;
-  logMessage('Running composer update in ' + dir);
-  exec('cd ' + dir +'; composer update --with-dependencies', (error, stdout, stderr) => {
+  var command = 'composer update --with-dependencies';
+  logMessage('Updating dependencies.');
+  logCommand(command, dir);
+  exec('cd ' + dir + '; ' + command, (error, stdout, stderr) => {
     if (error) {
       logMessage(error);
       return;
@@ -204,6 +210,22 @@ function readSettings() {
 function logMessage(message) {
   var div = document.getElementById('log');
   div.innerHTML = div.innerHTML + `${message} <br />`;
+}
+
+/**
+ * Logs a message about the command we're executing.
+ *
+ * This delegates to logMessage to do the actual writing but adds extra classes
+ * for styling options.
+ *
+ * @param {string} command
+ *  The command.
+ * @param {string} dir
+ *  The directory we're running this from.
+ */
+function logCommand(command, dir) {
+  var string = `<span class="log-command">Running command: <span class="command">${command}</span> from <span class="directory">${dir}</span></span>`;
+  logMessage(string);
 }
 
 /**
